@@ -24,7 +24,7 @@ public class Buff {
 	}
 	
 	public synchronized boolean enviarMensaje(Mensaje msj){
-		while(buff.size() == n){
+		if(buff.size() == n){
 			return false;
 		}
 		hayMensajes = true;
@@ -33,8 +33,9 @@ public class Buff {
 		notifyAll();
 		try {
 			//aqui donde esta dormido? 
-			int x = buff.size();
-			buff.get(x).wait();
+			int x = buff.indexOf(msj);
+			Mensaje m = buff.get(x);
+			m.wait();
 		} 
 		catch (InterruptedException e) {
 			// TODO Auto-generated catch block
