@@ -10,7 +10,6 @@ public class TServidor extends Thread{
 	
 	public void run(){
 		Mensaje actual = buff.recibirMensaje();
-		actual.recibir();
 		System.out.println("Recibido: "+actual.getMensaje());
 		//no se que hacer aca XD 
 		actual.notify();

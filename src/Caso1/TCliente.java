@@ -7,18 +7,17 @@ public class TCliente extends Thread {
 
 	public TCliente(Buff buff) {
 		this.buff = buff;
-		// TODO Auto-generated constructor stub
 	}
 
 	public void run(){
 		// EL FOR ES SOLO PARA QUE MANDE MAS DE UN MENSAJE ND MAS
 		for(int i = 0; i < 10; i++){
-			Mensaje aEnviar = crearMensaje(i);
+			Mensaje aEnviar = new Mensaje("YOLO " + i);
 			while(buff.enviarMensaje(aEnviar)) yield();
 			while(aEnviar.recibido()){
 				try {
 					System.out.println("Me too.....");
-					aEnviar.wait();
+					wait();
 					System.out.println("Now im up!!!!.....");
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -28,9 +27,4 @@ public class TCliente extends Thread {
 			System.out.println("Recibido : "+aEnviar.getMensaje());
 		}	
 	}
-
-	public Mensaje crearMensaje(int i){
-		return new Mensaje("YOLO " + i);
-	}
-
 }

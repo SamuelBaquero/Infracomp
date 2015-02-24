@@ -20,7 +20,7 @@ public class Mensaje {
 	}
 
 	public void recibir() {
-		recibido = !recibido;
+		recibido = true;
 	}
 	
 	public boolean recibido(){

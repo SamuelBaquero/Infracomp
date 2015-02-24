@@ -34,15 +34,15 @@ public class Buff {
 		}
 		//AQUI HAY UN ERROR.
 		System.out.println("Ne:"+n);
-		buff[n++] = msj;
+		buff[n] = msj;
+		n++;
 		System.out.println("Envio de: " + msj.getMensaje());
 		notifyAll();
-		System.out.println("Notify envio.");
 		return true;
 	}
 	
 	public synchronized Mensaje recibirMensaje(){
-		while(n <= 0){
+		while(n < 0){
 			try {
 				System.out.println("Im waiting.....");
 				wait();
@@ -53,8 +53,10 @@ public class Buff {
 				e.printStackTrace();
 			}
 		}
-		Mensaje actual = buff[n--];
-		System.out.println("Nr: "+n);
+		Mensaje actual = buff[n];
+		n--;
+		System.out.println("Nr: "+ n + actual.recibido());
+		actual.recibir();
 		return actual;
 	}
 }
