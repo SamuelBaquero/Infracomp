@@ -1,11 +1,15 @@
 package Caso1;
 
-import java.util.ArrayList;
 
 public class Buff {
-	private ArrayList<Mensaje> buff;
+	/**
+	 * Mensajes
+	 */
+	private Mensaje buff[];
+	/**
+	 * Cantidad de Mensajes Actuales.
+	 */
 	private int n;
-	private boolean hayMensajes;
 	
 	public static void main(String[] arg){
 		Buff buff = new Buff(20);
@@ -13,50 +17,47 @@ public class Buff {
 			TCliente cliente = new TCliente(buff);
 			TServidor servidor = new TServidor(buff);
 			cliente.start();
+			System.out.println("Cliente Started "+i);
 			servidor.start();
+			System.out.println("Servidor Started "+i);
 		}
 	}
 	
 	public Buff(int n){
-		buff= new ArrayList<>();
-		this.n = n;
-		hayMensajes = false;
+		buff= new Mensaje[n];
+		this.n = 0;
 	}
 	
 	public synchronized boolean enviarMensaje(Mensaje msj){
-		if(buff.size() == n){
+		if(n==buff.length-1){
+			System.out.println("WTF.....");
 			return false;
 		}
-		hayMensajes = true;
-		buff.add(msj);
+		//AQUI HAY UN ERROR.
 		n++;
+		System.out.println("Ne:"+n);
+		buff[n] = msj;
+		System.out.println("Envio de: " + msj.getMensaje());
 		notifyAll();
-		try {
-			//aqui donde esta dormido? 
-			int x = buff.indexOf(msj);
-			Mensaje m = buff.get(x);
-			m.wait();
-		} 
-		catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("Notify envio.");
 		return true;
 	}
 	
 	public synchronized Mensaje recibirMensaje(){
-		while(!hayMensajes){
+		while(n <= 0){
 			try {
+				System.out.println("Im waiting.....");
 				wait();
-			} 
+				System.out.println("I woke up.....");
+			}
 			catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		Mensaje actual = buff.get(0);	
-		buff.remove(0);
 		n--;
+		Mensaje actual = buff[n];
+		System.out.println("Nr: "+n);
 		return actual;
 	}
 }
