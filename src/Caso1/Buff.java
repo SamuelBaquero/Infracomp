@@ -29,14 +29,12 @@ public class Buff {
 	}
 	
 	public synchronized boolean enviarMensaje(Mensaje msj){
-		if(n==buff.length-1){
-			System.out.println("WTF.....");
+		if(n==buff.length){
 			return false;
 		}
 		//AQUI HAY UN ERROR.
-		n++;
 		System.out.println("Ne:"+n);
-		buff[n] = msj;
+		buff[n++] = msj;
 		System.out.println("Envio de: " + msj.getMensaje());
 		notifyAll();
 		System.out.println("Notify envio.");
@@ -55,8 +53,7 @@ public class Buff {
 				e.printStackTrace();
 			}
 		}
-		n--;
-		Mensaje actual = buff[n];
+		Mensaje actual = buff[n--];
 		System.out.println("Nr: "+n);
 		return actual;
 	}
