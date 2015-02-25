@@ -15,16 +15,23 @@ public class Mensaje {
 		return mensaje;
 	}
 	
-	public boolean responder(){
-		return recibido;
+	public synchronized void responder(){
+		System.out.println("time to wake up");
+		notify();
 	}
 
 	public void recibir() {
-		mensaje = mensaje;
+		mensaje = mensaje + 5;
 		recibido = true;
 	}
 	
-	public boolean recibido(){
-		return recibido;
+	public synchronized void recibido(){
+		try {
+			System.out.println("me voy a dormir zzzz");
+			wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

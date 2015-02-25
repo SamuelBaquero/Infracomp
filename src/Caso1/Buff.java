@@ -41,16 +41,7 @@ public class Buff {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//		for(int i = 0; i < 10; i++){
-		//			TCliente cliente = new TCliente(buff);
-		//			TServidor servidor = new TServidor(buff);
-		//			cliente.start();
-		//			System.out.println("Cliente Started "+i);
-		//			servidor.start();
-		//			System.out.println("Servidor Started "+i);
-		//		}
 	}
-
 
 	public Buff(int n){
 		buff= new Mensaje[n];
@@ -59,10 +50,11 @@ public class Buff {
 
 	public synchronized boolean enviarMensaje(Mensaje msj){
 		if(n<buff.length){
-			System.out.println("Ne:"+n);
+//			System.out.println("Ne:"+n);
 			buff[n] = msj;
 			n++;
-			System.out.println("Envio de: " + msj.getMensaje());
+//			System.out.println("Envio de: " + msj.getMensaje());
+			System.out.println("hay " + n + " mensajes esperando.");
 			notifyAll();
 			return true;
 		}
@@ -80,12 +72,11 @@ public class Buff {
 				e.printStackTrace();
 			}
 		}
-		synchronized(this){
 			n--;
 			Mensaje actual = buff[n];
-			System.out.println("Nr: "+ n + actual.recibido());
-			actual.recibir();
+			System.out.println("quedan " + n + " mensajes en cola");
+//			System.out.println("Nr: "+ n + actual.recibido());
+//			actual.recibir();
 			return actual;
-		}
 	}
 }

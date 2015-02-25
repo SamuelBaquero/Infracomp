@@ -15,21 +15,12 @@ public class TCliente extends Thread {
 
 	public void run(){
 		// EL FOR ES SOLO PARA QUE MANDE MAS DE UN MENSAJE ND MAS
-		System.out.println("ClienteIniciado: "+ id + "/" +cMensajes);
+		//		System.out.println("ClienteIniciado: "+ id + "/" +cMensajes);
 		for(int i = 0; i < cMensajes; i++){
-			Mensaje aEnviar = new Mensaje(id+i);
+			Mensaje aEnviar = new Mensaje(id+ i);
 			synchronized(this){while(buff.enviarMensaje(aEnviar)) yield();}
-			synchronized(this){
-			while(aEnviar.recibido()){
-				try {
-					wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			aEnviar.recibido();
 			System.out.println("Terminado : "+aEnviar.getMensaje());
-			}
 		}	
 	}
 }
