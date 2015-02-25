@@ -59,7 +59,6 @@ public class Buff {
 
 	public synchronized boolean enviarMensaje(Mensaje msj){
 		if(n<buff.length){
-			//AQUI HAY UN ERROR.
 			System.out.println("Ne:"+n);
 			buff[n] = msj;
 			n++;
@@ -71,7 +70,7 @@ public class Buff {
 	}
 
 	public synchronized Mensaje recibirMensaje(){
-		while(n < 0){
+		while(n <= 0){
 			try {
 				System.out.println("Im waiting.....");
 				wait();
