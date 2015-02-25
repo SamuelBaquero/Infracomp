@@ -4,14 +4,14 @@ public class Mensaje {
 
 	private boolean recibido;
 	
-	private String mensaje;
+	private int mensaje;
 
-	public Mensaje(String mensaje) {
-		this.mensaje = mensaje;
+	public Mensaje(int i) {
+		this.mensaje = i;
 		recibido = false;
 	}
 
-	public String getMensaje() {
+	public int getMensaje() {
 		return mensaje;
 	}
 	
@@ -20,6 +20,7 @@ public class Mensaje {
 	}
 
 	public void recibir() {
+		mensaje = mensaje;
 		recibido = true;
 	}
 	
