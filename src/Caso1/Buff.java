@@ -54,7 +54,7 @@ public class Buff {
 			buff[n] = msj;
 			n++;
 //			System.out.println("Envio de: " + msj.getMensaje());
-			System.out.println("hay " + n + " mensajes esperando.");
+//			System.out.println("hay " + n + " mensajes esperando.");
 			notifyAll();
 			return true;
 		}
@@ -64,7 +64,7 @@ public class Buff {
 	public synchronized Mensaje recibirMensaje(){
 		while(n <= 0){
 			try {
-				System.out.println("Im waiting.....");
+//				System.out.println("Im waiting.....");
 				wait();
 			}
 			catch (InterruptedException e) {
@@ -74,7 +74,7 @@ public class Buff {
 		}
 			n--;
 			Mensaje actual = buff[n];
-			System.out.println("quedan " + n + " mensajes en cola");
+//			System.out.println("quedan " + n + " mensajes en cola");
 //			System.out.println("Nr: "+ n + actual.recibido());
 //			actual.recibir();
 			return actual;

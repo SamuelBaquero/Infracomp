@@ -11,7 +11,7 @@ public class TServidor extends Thread{
 	public void run(){
 		while(true){
 			Mensaje actual = buff.recibirMensaje();
-			System.out.println("Recibido: "+actual.getMensaje());
+//			System.out.println("Recibido servidor: "+actual.getMensaje());
 			//no se que hacer aca XD 
 			actual.responder();
 		}
