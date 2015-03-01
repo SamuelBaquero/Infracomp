@@ -14,9 +14,9 @@ public class Mensaje {
 	
 	public synchronized void responder(){
 //		System.out.println("time to wake up");
-		System.out.println("el mensaje antes de responder es: " + mensaje);
+//		System.out.println("el mensaje antes de responder es: " + mensaje);
 		mensaje += 5;
-		System.out.println("el mensaje respondido es: " +  mensaje);
+//		System.out.println("el mensaje respondido es: " +  mensaje);
 		notify();
 	}
 	

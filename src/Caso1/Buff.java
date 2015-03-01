@@ -50,11 +50,9 @@ public class Buff {
 
 	public synchronized boolean enviarMensaje(Mensaje msj){
 		if(n<buff.length){
-//			System.out.println("Ne:"+n);
 			buff[n] = msj;
 			n++;
-//			System.out.println("Envio de: " + msj.getMensaje());
-//			System.out.println("hay " + n + " mensajes esperando.");
+//			System.out.println("se guardo el mensaje en la pos numro: " + n);
 			notifyAll();
 			return true;
 		}
@@ -74,9 +72,7 @@ public class Buff {
 		}
 			n--;
 			Mensaje actual = buff[n];
-//			System.out.println("quedan " + n + " mensajes en cola");
-//			System.out.println("Nr: "+ n + actual.recibido());
-//			actual.recibir();
+//			System.out.println("el mensaje a entregar es : " + n);
 			return actual;
 	}
 }

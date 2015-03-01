@@ -20,7 +20,7 @@ public class TCliente extends Thread {
 		for(int i = 0; i < cMensajes; i++){
 			mensaje = new Mensaje(id + i);
 			System.out.println("se envio el mensaje numero  " + mensaje.getMensaje());
-			while(buff.enviarMensaje(mensaje)) yield();
+			while(!buff.enviarMensaje(mensaje)) yield();
 			mensaje.recibido();
 			System.out.println("Terminado : "+ mensaje.getMensaje());
 		}	
