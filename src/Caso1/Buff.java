@@ -52,7 +52,6 @@ public class Buff {
 		if(n<buff.length){
 			buff[n] = msj;
 			n++;
-//			System.out.println("se guardo el mensaje en la pos numro: " + n);
 			notifyAll();
 			return true;
 		}
@@ -62,7 +61,6 @@ public class Buff {
 	public synchronized Mensaje recibirMensaje(){
 		while(n <= 0){
 			try {
-//				System.out.println("Im waiting.....");
 				wait();
 			}
 			catch (InterruptedException e) {
@@ -72,7 +70,6 @@ public class Buff {
 		}
 			n--;
 			Mensaje actual = buff[n];
-//			System.out.println("el mensaje a entregar es : " + n);
 			return actual;
 	}
 }
